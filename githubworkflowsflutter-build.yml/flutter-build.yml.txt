@@ -1,0 +1,44 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'   # ???? Flutter version ?????
+
+      - name: Install dependencies
+        run: flutter pub get
+        working-directory: Noor_ul_Huda_App
+
+      - name: Analyze code
+        run: flutter analyze
+        working-directory: Noor_ul_Huda_App
+
+      - name: Run tests
+        run: flutter test
+        working-directory: Noor_ul_Huda_App
+
+      - name: Build Android APK
+        run: flutter build apk --release
+        working-directory: Noor_ul_Huda_App
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-apk
+          path: Noor_ul_Huda_App/build/app/outputs/flutter-apk/app-release.apk

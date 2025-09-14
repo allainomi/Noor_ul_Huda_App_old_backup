@@ -1,0 +1,25 @@
+name: noor_ul_huda_app
+description: A minimal Islamic reference Flutter app (modules + assets).
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/hadith.json
+    - assets/duas.json
+    - assets/stories.json
+    - assets/names.json
+    - assets/zakat_config.json
+    - assets/hajj_umrah.json
