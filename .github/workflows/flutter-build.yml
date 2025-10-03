@@ -18,54 +18,12 @@ jobs:
       with:
         flutter-version: '3.22.0'
         
-    - name: Fix pubspec.yaml
+    - name: Create Flutter Project
       run: |
-        # درست pubspec.yaml بنائیں
-        cat > pubspec.yaml << 'EOF'
-        name: noor_ul_huda_app
-        description: "نور الہدیٰ ایپ - اسلامی تعلیمات کا حسین مجموعہ"
-
-        publish_to: 'none'
-        version: 1.0.0+1
-
-        environment:
-          sdk: '>=3.0.0 <4.0.0'
-
-        dependencies:
-          flutter:
-            sdk: flutter
-          cupertino_icons: ^1.0.2
-          http: ^1.1.0
-          shared_preferences: ^2.2.2
-          url_launcher: ^6.1.11
-          audioplayers: ^5.2.1
-
-        dev_dependencies:
-          flutter_test:
-            sdk: flutter
-          flutter_lints: ^3.0.0
-
-        flutter:
-          uses-material-design: true
-          
-          assets:
-            - assets/images/
-            - assets/audio/
-            - assets/data/
-            - assets/fonts/
-
-          fonts:
-            - family: Urdu
-              fonts:
-                - asset: assets/fonts/urdu_font.ttf
-            - family: Arabic
-              fonts:
-                - asset: assets/fonts/arabic_font.ttf
-        EOF
+        # Remove existing Flutter folders
+        rm -rf android ios lib test
         
-    - name: Create New Project
-      run: |
-        mkdir -p lib
+        # Create new Flutter project
         flutter create --org com.noorulhuda --project-name noor_ul_huda_app .
         
     - name: Install Dependencies
