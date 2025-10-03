@@ -18,7 +18,7 @@ jobs:
       with:
         flutter-version: '3.22.0'
         
-    - name: Fix pubspec.yaml First
+    - name: Fix pubspec.yaml
       run: |
         # درست pubspec.yaml بنائیں
         cat > pubspec.yaml << 'EOF'
@@ -45,10 +45,7 @@ jobs:
         
     - name: Create Flutter Project
       run: |
-        # Remove existing Flutter folders
         rm -rf android ios lib test
-        
-        # Create new Flutter project
         flutter create --org com.noorulhuda --project-name noor_ul_huda_app .
         
     - name: Install Dependencies
