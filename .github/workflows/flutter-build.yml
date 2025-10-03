@@ -1,0 +1,46 @@
+name: Build Noor-ul-Huda APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.22.0'
+        
+    - name: Create New Project
+      run: |
+        mkdir backup
+        cp -r lib backup/ 2>/dev/null || true
+        cp -r assets backup/ 2>/dev/null || true
+        cp pubspec.yaml backup/ 2>/dev/null || true
+        
+        rm -rf android ios lib test
+        flutter create --org com.noorulhuda --project-name noor_ul_huda_app .
+        
+        cp -r backup/lib/* lib/ 2>/dev/null || true
+        cp -r backup/assets/* assets/ 2>/dev/null || true
+        cp backup/pubspec.yaml ./ 2>/dev/null || true
+        
+    - name: Install Dependencies
+      run: flutter pub get
+      
+    - name: Build APK
+      run: flutter build apk --release
+      
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: noor-ul-huda-app
+        path: build/app/outputs/flutter-apk/app-release.apk
+        retention-days: 30
