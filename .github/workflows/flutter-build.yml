@@ -18,6 +18,31 @@ jobs:
       with:
         flutter-version: '3.22.0'
         
+    - name: Fix pubspec.yaml First
+      run: |
+        # درست pubspec.yaml بنائیں
+        cat > pubspec.yaml << 'EOF'
+        name: noor_ul_huda_app
+        description: "نور الہدیٰ ایپ"
+
+        publish_to: 'none'
+        version: 1.0.0+1
+
+        environment:
+          sdk: '>=3.0.0 <4.0.0'
+
+        dependencies:
+          flutter:
+            sdk: flutter
+
+        dev_dependencies:
+          flutter_test:
+            sdk: flutter
+
+        flutter:
+          uses-material-design: true
+        EOF
+        
     - name: Create Flutter Project
       run: |
         # Remove existing Flutter folders
