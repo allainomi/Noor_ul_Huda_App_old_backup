@@ -1,25 +1,85 @@
 name: noor_ul_huda_app
-description: A minimal Islamic reference Flutter app (modules + assets).
-publish_to: "none"
+description: "نور الہدیٰ ایپ - اسلامی تعلیمات کا حسین مجموعہ"
+
+publish_to: 'none'
+
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.17.0 <4.0.0"
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
+  cupertino_icons: ^1.0.2
+  http: ^1.1.0
+  shared_preferences: ^2.2.2
+  url_launcher: ^6.1.11
+  audioplayers: ^5.2.1
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^3.0.0
 
 flutter:
   uses-material-design: true
+  
   assets:
-    - assets/hadith.json
-    - assets/duas.json
-    - assets/stories.json
-    - assets/names.json
-    - assets/zakat_config.json
-    - assets/hajj_umrah.json
+    - assets/images/
+    - assets/images/quran/
+    - assets/images/hadith/
+    - assets/images/duas/
+    - assets/audio/
+    - assets/audio/quran/
+    - assets/audio/duas/
+    - assets/audio/lectures/
+    - assets/data/
+    - assets/data/quran/
+    - assets/data/hadith/
+    - assets/data/books/
+    - assets/fonts/
+
+  fonts:
+    - family: Urdu
+      fonts:
+        - asset: assets/fonts/JameelNooriNastaleeq.ttf
+        - asset: assets/fonts/NotoNastaliqUrdu.ttf
+    - family: Arabic
+      fonts:
+        - asset: assets/fonts/me_quran.ttf
+        - asset: assets/fonts/UthmanicHafs1.ttf
+        - asset: assets/fonts/KFGQPCUthmanicScriptHAFS.ttf
+    - family: English
+      fonts:
+        - asset: assets/fonts/OpenSans-Regular.ttf
+        - asset: assets/fonts/OpenSans-Bold.ttf
+          weight: 700
+
+  # Android specific configuration
+  android:
+    package: com.noorulhuda.app
+    enable_jetifier: true
+    
+  # iOS specific configuration  
+  ios:
+    bundle_identifier: com.noorulhuda.app
+
+  # Web specific configuration
+  web:
+    favicon: assets/images/favicon.png
+    manifest:
+      name: نور الہدیٰ ایپ
+      short_name: نور الہدیٰ
+      description: اسلامی تعلیمات کا حسین مجموعہ
+      start_url: /
+      display: standalone
+      theme_color: #16A085
+      background_color: #FFFFFF
+
+# For blocking bad http certificates (for development only)
+enable_network_tracking: false
+enable_network_profile: false
